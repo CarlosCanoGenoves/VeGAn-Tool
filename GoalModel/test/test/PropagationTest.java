@@ -1,19 +1,18 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
-import java.util.AbstractMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.Test;
 
 import VEGAN.*;
 import goalModel.*;
 
-class PropagationTest {
+public class PropagationTest {
 
 	@Test
-	void testPropagationOfContributions() {
+	public void testPropagationOfContributions() {
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/contribution.xmi");
 		
 		//La estructura es A -> B -> C -> D
@@ -31,7 +30,7 @@ class PropagationTest {
 	}
 	
 	@Test
-	void testPropagationOfDependencies() {
+	public void testPropagationOfDependencies() {
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/dependency.xmi");
 		
 		//La estructura es A -D- B -D- C -D- D
@@ -49,7 +48,7 @@ class PropagationTest {
 	}
 	
 	@Test
-	void testPropagationOfDecompositionPadre_Hijo() 
+	public void testPropagationOfDecompositionPadre_Hijo() 
 	{
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/decompositionPH.xmi");
 		
@@ -68,7 +67,7 @@ class PropagationTest {
 	}
 	
 	@Test
-	void testPropagationOfDecompositionHijo_Padre() 
+	public void testPropagationOfDecompositionHijo_Padre() 
 	{
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/decompositionHP.xmi");
 		
@@ -87,7 +86,7 @@ class PropagationTest {
 	}
 	
 	@Test
-	void testPropagationLimites() 
+	public void testPropagationLimites() 
 	{
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/full.xmi");
 		
@@ -115,9 +114,9 @@ class PropagationTest {
 	
 	//The importance of this test is the console output, it is to check if it is propagated in the right order
 	@Test
-	void testGoalModel() 
+	public void testGoalModel() 
 	{
-		GoalModel myLoadedGoalModel = UsingEMFModel.load("test.xmi");
+		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/test.xmi");
 		
 		Tuple<double[][], Map<IntentionalElement, Integer>> p = Propagation.propagate(myLoadedGoalModel, true);
 		

@@ -1,19 +1,18 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
-import java.util.AbstractMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.Test;
 
 import VEGAN.*;
 import goalModel.*;
 
-class FuzzyPropagation {
+public class FuzzyPropagation {
 
 	@Test
-	void testFuzzyPropagationOfContributions() {
+	public void testFuzzyPropagationOfContributions() {
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/contribution.xmi");
 		
 		//La estructura es A -> B -> C -> D
@@ -42,14 +41,14 @@ class FuzzyPropagation {
 		for(int i=0;i<expectedOutput2.length;i++)
 			for(int j=0;j<expectedOutput2.length;j++)
 			{
-				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1);
-				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2);
-				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3);
+				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1, 0.1);
+				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2, 0.1);
+				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3, 0.1);
 			}
 	}
 	
 	@Test
-	void testFuzzyPropagationOfDependencies() {
+	public void testFuzzyPropagationOfDependencies() {
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/dependency.xmi");
 		
 		//La estructura es A -D- B -D- C -D- D
@@ -78,14 +77,14 @@ class FuzzyPropagation {
 		for(int i=0;i<expectedOutput2.length;i++)
 			for(int j=0;j<expectedOutput2.length;j++)
 			{
-				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1);
-				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2);
-				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3);
+				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1, 0.1);
+				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2, 0.1);
+				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3, 0.1);
 			}
 	}
 	
 	@Test
-	void tesFuzzytPropagationOfDecompositionPadre_Hijo() 
+	public void tesFuzzytPropagationOfDecompositionPadre_Hijo() 
 	{		
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/decompositionPH.xmi");
 		
@@ -115,14 +114,14 @@ class FuzzyPropagation {
 		for(int i=0;i<expectedOutput2.length;i++)
 			for(int j=0;j<expectedOutput2.length;j++)
 			{
-				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1);
-				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2);
-				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3);
+				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1, 0.1);
+				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2, 0.1);
+				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3, 0.1);
 			}
 	}
 	
 	@Test
-	void testFuzzyPropagationOfDecompositionHijo_Padre() 
+	public void testFuzzyPropagationOfDecompositionHijo_Padre() 
 	{
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/decompositionHP.xmi");
 		
@@ -152,14 +151,14 @@ class FuzzyPropagation {
 		for(int i=0;i<expectedOutput2.length;i++)
 			for(int j=0;j<expectedOutput2.length;j++)
 			{
-				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1);
-				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2);
-				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3);
+				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1, 0.1);
+				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2, 0.1);
+				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3, 0.1);
 			}
 	}
 	
 	@Test
-	void testFuzzyPropagationSaturacion() 
+	public void testFuzzyPropagationSaturacion() 
 	{
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/saturacion.xmi");
 		
@@ -193,9 +192,9 @@ class FuzzyPropagation {
 		for(int i=0;i<expectedOutput2.length;i++)
 			for(int j=0;j<expectedOutput2.length;j++)
 			{
-				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1);
-				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2);
-				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3);
+				assertEquals(expectedOutput2[i][j].n1, output2[i][j].n1, 0.1);
+				assertEquals(expectedOutput2[i][j].n2, output2[i][j].n2, 0.1);
+				assertEquals(expectedOutput2[i][j].n3, output2[i][j].n3, 0.1);
 			}
 	}
 

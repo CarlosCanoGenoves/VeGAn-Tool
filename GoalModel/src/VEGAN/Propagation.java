@@ -1,12 +1,10 @@
 package VEGAN;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import goalModel.*;
 
@@ -53,7 +51,7 @@ public class Propagation {
 		if(verbose)
 			System.out.println("Amount of IE: " + toVisitIE.size());
 		
-		//Detec loops if it cost too many time ¿ Maybe an error?
+		//Detec loops if it cost too many time ï¿½ Maybe an error?
 		int forceStop = ieP*ieP*ieP + 100;
 		
 		List<Link> propagatedLinks = new ArrayList<Link>();

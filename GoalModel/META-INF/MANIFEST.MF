@@ -8,15 +8,14 @@ Bundle-ClassPath: .,
  jgoodies-forms-1.8.0.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: VISUAL,
  goalModel,
  goalModel.impl,
  goalModel.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.junit,
- org.junit.jupiter.api
+ org.junit
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.ecore.xmi.impl

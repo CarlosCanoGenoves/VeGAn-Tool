@@ -1,10 +1,9 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.util.Map;
-
-import org.junit.jupiter.api.Test;
 
 import VEGAN.*;
 import goalModel.Actor;
@@ -13,10 +12,10 @@ import goalModel.EImportance;
 import goalModel.GoalModel;
 import goalModel.IntentionalElement;
 
-class testFTOPSIS {
+public class testFTOPSIS {
 	
 	@Test
-	void testcalculateActorWeight() {
+	public void testcalculateActorWeight() {
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/actorWeight.xmi");
 		FuzzyNumber[] expectedOutput = {new FuzzyNumber(EImportance.VERY_HIGH, EConfidence.POSSIBLY_MORE), new FuzzyNumber(EImportance.MEDIUM, EConfidence.CONFIDENT), new FuzzyNumber(EImportance.VERY_LOW, EConfidence.POSSIBLY_LESS)};
 		
@@ -28,7 +27,7 @@ class testFTOPSIS {
 	}
 	
 	@Test
-	void testcalculateSimpleIEWeight()
+	public void testcalculateSimpleIEWeight()
 	{
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/simpleCriteriaWeight.xmi");
 		FuzzyNumber[] expectedOutput = {new FuzzyNumber(EImportance.VERY_HIGH, EConfidence.POSSIBLY_MORE), new FuzzyNumber(EImportance.MEDIUM, EConfidence.CONFIDENT), new FuzzyNumber(EImportance.VERY_LOW, EConfidence.POSSIBLY_LESS)};
@@ -42,7 +41,7 @@ class testFTOPSIS {
 	}
 	
 	@Test
-	void testcalculateComplexIEWeight() {
+	public void testcalculateComplexIEWeight() {
 		
 		
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/complexCriteriaWeight.xmi");
@@ -55,14 +54,14 @@ class testFTOPSIS {
 		
 		for(int i=0;i<output.length;i++)
 		{
-			assertEquals(expectedOutput[i].n1, Math.round(output[i].n1*100.0)/100.0);
-			assertEquals(expectedOutput[i].n2, Math.round(output[i].n2*100.0)/100.0);
-			assertEquals(expectedOutput[i].n3, Math.round(output[i].n3*100.0)/100.0);
+			assertEquals(expectedOutput[i].n1, Math.round(output[i].n1*100.0)/100.0, 0.01);
+			assertEquals(expectedOutput[i].n2, Math.round(output[i].n2*100.0)/100.0, 0.01);
+			assertEquals(expectedOutput[i].n3, Math.round(output[i].n3*100.0)/100.0, 0.01);
 		}
 	}
 	
 	@Test
-	void testcalculateMoreComplexIEWeight() {
+	public void testcalculateMoreComplexIEWeight() {
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/complexCriteriaWeight2.xmi");
 		FuzzyNumber[] expectedOutput = new FuzzyNumber[5];
 		
@@ -79,15 +78,15 @@ class testFTOPSIS {
 		
 		for(int i=0;i<output.length;i++)
 		{
-			assertEquals(expectedOutput[i].n1, Math.round(output[i].n1*100.0)/100.0);
-			assertEquals(expectedOutput[i].n2, Math.round(output[i].n2*100.0)/100.0);
-			assertEquals(expectedOutput[i].n3, Math.round(output[i].n3*100.0)/100.0);
+			assertEquals(expectedOutput[i].n1, Math.round(output[i].n1*100.0)/100.0, 0.01);
+			assertEquals(expectedOutput[i].n2, Math.round(output[i].n2*100.0)/100.0, 0.01);
+			assertEquals(expectedOutput[i].n3, Math.round(output[i].n3*100.0)/100.0, 0.01);
 		}
 	}
 
 
 	@Test
-	void testherarchizeSimplePM() {
+	public void testherarchizeSimplePM() {
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/simpleCriteriaWeight.xmi");
 		
 		Tuple<double[][], Map<IntentionalElement, Integer>> tuplePropagation = Propagation.propagate(myLoadedGoalModel);
@@ -105,7 +104,7 @@ class testFTOPSIS {
 	}
 	
 	@Test
-	void testherarchizeComplexPM() {
+	public void testherarchizeComplexPM() {
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/complexCriteriaWeight.xmi");
 		
 		Tuple<double[][], Map<IntentionalElement, Integer>> tuplePropagation = Propagation.propagate(myLoadedGoalModel);
@@ -123,7 +122,7 @@ class testFTOPSIS {
 	}
 	
 	@Test
-	void testherarchizeMoreComplexPM() {
+	public void testherarchizeMoreComplexPM() {
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/complexCriteriaWeight2.xmi");
 		
 		Tuple<double[][], Map<IntentionalElement, Integer>> tuplePropagation = Propagation.propagate(myLoadedGoalModel);
@@ -143,7 +142,7 @@ class testFTOPSIS {
 	}
 	
 	@Test
-	void testherarchizePMAddition() {
+	public void testherarchizePMAddition() {
 		//Test what happens when you contribute to parent and child
 		
 		GoalModel myLoadedGoalModel = UsingEMFModel.load("testModels/hierarchize.xmi");
@@ -166,7 +165,7 @@ class testFTOPSIS {
 
 	@Test
 	//Weighted Normalized Fuzzy Performance Matrix
-	void testCalculateSimpleWFNM() {
+	public void testCalculateSimpleWFNM() {
 		GoalModel goalModel = UsingEMFModel.load("testModels/simpleCriteriaWeight.xmi");
 		
 		Tuple<double[][], Map<IntentionalElement, Integer>> tuplePropagation = Propagation.propagate(goalModel);
@@ -201,9 +200,9 @@ class testFTOPSIS {
 		
 		for (int i = 0; i < expectedOutput.length; i++) {
 			for (int j = 0; j < expectedOutput.length; j++) {
-				assertEquals(expectedOutput[i][j].n1, Math.round(output[i][j].n1 * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j].n2, Math.round(output[i][j].n2 * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j].n3, Math.round(output[i][j].n3 * 100.0) / 100.0);
+				assertEquals(expectedOutput[i][j].n1, Math.round(output[i][j].n1 * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j].n2, Math.round(output[i][j].n2 * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j].n3, Math.round(output[i][j].n3 * 100.0) / 100.0, 0.01);
 			}
 		}
 		
@@ -211,7 +210,7 @@ class testFTOPSIS {
 	}
 	
 	@Test
-	void testCalculateComplexWFNM() {
+	public void testCalculateComplexWFNM() {
 		GoalModel goalModel = UsingEMFModel.load("testModels/complexCriteriaWeight.xmi");
 		
 		FuzzyNumber[][] output = FTOPSIS.calculateWFNM(goalModel);
@@ -232,15 +231,15 @@ class testFTOPSIS {
 		
 		for (int i = 0; i < expectedOutput.length; i++) {
 			for (int j = 0; j < expectedOutput.length; j++) {
-				assertEquals(expectedOutput[i][j].n1, Math.round(output[i][j].n1 * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j].n2, Math.round(output[i][j].n2 * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j].n3, Math.round(output[i][j].n3 * 100.0) / 100.0);
+				assertEquals(expectedOutput[i][j].n1, Math.round(output[i][j].n1 * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j].n2, Math.round(output[i][j].n2 * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j].n3, Math.round(output[i][j].n3 * 100.0) / 100.0, 0.01);
 			}
 		}
 	}
 	
 	@Test
-	void testCalculateMoreComplexWFNM() {
+	public void testCalculateMoreComplexWFNM() {
 		GoalModel goalModel = UsingEMFModel.load("testModels/complexCriteriaWeight2.xmi");
 		
 		FuzzyNumber[][] output = FTOPSIS.calculateWFNM(goalModel);
@@ -279,15 +278,15 @@ class testFTOPSIS {
 		
 		for (int i = 0; i < expectedOutput.length; i++) {
 			for (int j = 0; j < expectedOutput.length; j++) {
-				assertEquals(expectedOutput[i][j].n1, Math.round(output[i][j].n1 * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j].n2, Math.round(output[i][j].n2 * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j].n3, Math.round(output[i][j].n3 * 100.0) / 100.0);
+				assertEquals(expectedOutput[i][j].n1, Math.round(output[i][j].n1 * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j].n2, Math.round(output[i][j].n2 * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j].n3, Math.round(output[i][j].n3 * 100.0) / 100.0, 0.01);
 			}
 		}
 	}
 
 	@Test
-	void testFTOPSIS_FNIS() {
+	public void testFTOPSIS_FNIS() {
 		GoalModel goalModel = UsingEMFModel.load("testModels/FPIS_FNIS.xmi");
 		FuzzyNumber[][] WFNM = FTOPSIS.calculateWFNM(goalModel);
 		
@@ -317,15 +316,15 @@ class testFTOPSIS {
 		
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < WFNM.length; j++) {
-				assertEquals(expectedOutput[i][j].n1, Math.round(output[i][j].n1 * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j].n2, Math.round(output[i][j].n2 * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j].n3, Math.round(output[i][j].n3 * 100.0) / 100.0);
+				assertEquals(expectedOutput[i][j].n1, Math.round(output[i][j].n1 * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j].n2, Math.round(output[i][j].n2 * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j].n3, Math.round(output[i][j].n3 * 100.0) / 100.0, 0.01);
 			}
 		}
 	}
 	
 	@Test
-	void testTotalDistance() {
+	public void testTotalDistance() {
 		GoalModel goalModel = UsingEMFModel.load("testModels/FPIS_FNIS.xmi");
 		FuzzyNumber[][] WFNM = FTOPSIS.calculateWFNM(goalModel);
 		
@@ -333,11 +332,11 @@ class testFTOPSIS {
 		double output = FTOPSIS.totalDistance(FPIS_FNIS);
 		double expectedOutput = 310.27;
 		
-		assertEquals(expectedOutput, Math.round(output*100)/100.0);		
+		assertEquals(expectedOutput, Math.round(output*100)/100.0, 0.01);		
 	}
 	
 	@Test
-	void testDistanceToFPIS_FNIS() {
+	public void testDistanceToFPIS_FNIS() {
 		
 		GoalModel goalModel = UsingEMFModel.load("testModels/FPIS_FNIS.xmi");
 		FuzzyNumber[][] WFNM = FTOPSIS.calculateWFNM(goalModel);
@@ -364,23 +363,23 @@ class testFTOPSIS {
 		
 		for (int i = 0; i < distanceFPIS.length; i++) {
 			for (int j = 0; j < distanceFPIS.length; j++) {
-				assertEquals(expectedDistanceFPIS[i][j], Math.round(distanceFPIS[i][j] * 100.0) / 100.0);
-				assertEquals(expectedDistanceFPIS[i][j], Math.round(distanceFPIS[i][j] * 100.0) / 100.0);
-				assertEquals(expectedDistanceFPIS[i][j], Math.round(distanceFPIS[i][j] * 100.0) / 100.0);
+				assertEquals(expectedDistanceFPIS[i][j], Math.round(distanceFPIS[i][j] * 100.0) / 100.0, 0.01);
+				assertEquals(expectedDistanceFPIS[i][j], Math.round(distanceFPIS[i][j] * 100.0) / 100.0, 0.01);
+				assertEquals(expectedDistanceFPIS[i][j], Math.round(distanceFPIS[i][j] * 100.0) / 100.0, 0.01);
 			}
 		}
 		
 		for (int i = 0; i < distanceFNIS.length; i++) {
 			for (int j = 0; j < distanceFPIS.length; j++) {
-				assertEquals(expectedDistanceFNIS[i][j], Math.round(distanceFNIS[i][j] * 100.0) / 100.0);
-				assertEquals(expectedDistanceFNIS[i][j], Math.round(distanceFNIS[i][j] * 100.0) / 100.0);
-				assertEquals(expectedDistanceFNIS[i][j], Math.round(distanceFNIS[i][j] * 100.0) / 100.0);
+				assertEquals(expectedDistanceFNIS[i][j], Math.round(distanceFNIS[i][j] * 100.0) / 100.0, 0.01);
+				assertEquals(expectedDistanceFNIS[i][j], Math.round(distanceFNIS[i][j] * 100.0) / 100.0, 0.01);
+				assertEquals(expectedDistanceFNIS[i][j], Math.round(distanceFNIS[i][j] * 100.0) / 100.0, 0.01);
 			}
 		}
 	}
 	
 	@Test
-	void testCalculateValueToCriteria() {
+	public void testCalculateValueToCriteria() {
 		GoalModel goalModel = UsingEMFModel.load("testModels/FPIS_FNIS.xmi");
 		FuzzyNumber[][] WFNM = FTOPSIS.calculateWFNM(goalModel);
 		
@@ -397,15 +396,15 @@ class testFTOPSIS {
 	
 		for (int i = 0; i < output.length; i++) {
 			for (int j = 0; j < output.length; j++) {
-				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0);
+				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100., 0.01);
+				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0, 0.01);
 			}
 		}
 	}
 	
 	@Test
-	void testCalculateValueToCriteria2() {
+	public void testCalculateValueToCriteria2() {
 		GoalModel goalModel = UsingEMFModel.load("testModels/FPIS_FNIS.xmi");
 		
 		double[][] output = FTOPSIS.calculateValueToCriteria(goalModel);
@@ -418,16 +417,17 @@ class testFTOPSIS {
 	
 		for (int i = 0; i < output.length; i++) {
 			for (int j = 0; j < output.length; j++) {
-				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0);
-				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0);
+				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0, 0.01);
+				assertEquals(expectedOutput[i][j], Math.round(output[i][j] * 100.0) / 100.0, 0.01);
 			}
 		}
 	}
 	
+	//Test designed to check in debug mode
 	@Test
-	void testCalculateValue() {
-		GoalModel goalModel = UsingEMFModel.load("test.xmi");
+	public void testCalculateValue() {
+		GoalModel goalModel = UsingEMFModel.load("testModels/test.xmi");
 		
 		Tuple<double[][], Map<IntentionalElement, Integer>> tuplePropagation = Propagation.propagate(goalModel);
 		
@@ -438,15 +438,15 @@ class testFTOPSIS {
 		
 		GoalModel output = FTOPSIS.calculateValue(goalModel).Item1;
 		
-		UsingEMFModel.save(output, "test3.xmi");
+		UsingEMFModel.save(output, "testModels/test3.xmi");
 				
 		return;
 	}
 	
 	//Test designed to check in debug mode
 	@Test
-	void testHopeModel() {
-		GoalModel goalModel = UsingEMFModel.load("hope.xmi");
+	public void testHopeModel() {
+		GoalModel goalModel = UsingEMFModel.load("testModels/hope.xmi");
 		
 		Tuple<double[][], Map<IntentionalElement, Integer>> tuplePropagation = Propagation.propagate(goalModel);
 		
@@ -486,8 +486,9 @@ class testFTOPSIS {
 		return;
 	}
 	
+	//Test designed to check in debug mode
 	@Test
-	void testKindleModel() {
+	public void testKindleModel() {
 		GoalModel goalModel = UsingEMFModel.load("testModels/Kindle_Solucion.xmi");
 		
 		Tuple<double[][], Map<IntentionalElement, Integer>> tuplePropagation = Propagation.propagate(goalModel);

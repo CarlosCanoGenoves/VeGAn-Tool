@@ -1,27 +1,19 @@
 package VEGAN;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 import goalModel.*;
-import goalModel.impl.*;
-import goalModel.util.*;
 
 public class UsingEMFModel {
 
@@ -55,7 +47,7 @@ public class UsingEMFModel {
 			System.out.println(temp.getElementName());
 		});
 
-		for (Iterator iterator = myGoalModel.getActors().iterator(); iterator.hasNext();) {
+		for (Iterator<Actor> iterator = myGoalModel.getActors().iterator(); iterator.hasNext();) {
 			Actor type = (Actor) iterator.next();
 
 			System.out.println(type.getElementName());
