@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="goalModel" nsURI="http://goalModel" nsPrefix="goalModel">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="GoalModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="The_name_of_the_actor_must_be_unique"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="The_name_of_the_actor_must_be_unique" value="self.actors->isUnique(name)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
+        eType="#//Actor" containment="true" eOpposite="#//Actor/goalmodel"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//GoalElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="The_name_of_the_intentional_element_must_be_unique"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="The_name_of_the_intentional_element_must_be_unique" value="self.intentionalelements->isUnique(name)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="goalmodel" lowerBound="1"
+        eType="#//GoalModel" eOpposite="#//GoalModel/actors"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intentionalelements" upperBound="-1"
+        eType="#//IntentionalElement" containment="true" eOpposite="#//IntentionalElement/actor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentionalElement" abstract="true"
+      eSuperTypes="#//GoalElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="An_intentional_element_can_only_have_one_decomposition An_intentional_element_can_only_decompose_one_element"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="An_intentional_element_can_only_have_one_decomposition" value="self.srcLinks->select(oclIsTypeOf(Decomposition))->size() &lt; 2"/>
+      <details key="An_intentional_element_can_only_decompose_one_element" value="self.trgLinks->select(oclIsTypeOf(Decomposition))->size() &lt; 2"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" lowerBound="1" eType="#//Actor"
+        eOpposite="#//Actor/intentionalelements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="srcLinks" upperBound="-1"
+        eType="#//Link" containment="true" eOpposite="#//Link/src"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trgLinks" upperBound="-1"
+        eType="#//Link" eOpposite="#//Link/trgs"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Link" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//IntentionalElement"
+        eOpposite="#//IntentionalElement/srcLinks"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trgs" lowerBound="1" upperBound="-1"
+        eType="#//IntentionalElement" eOpposite="#//IntentionalElement/trgLinks"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EImportance">
+    <eLiterals name="Very_High" literal="Very_High"/>
+    <eLiterals name="High" value="1"/>
+    <eLiterals name="Medium" value="2"/>
+    <eLiterals name="Low" value="3"/>
+    <eLiterals name="Very_Low" value="4"/>
+    <eLiterals name="Not_Defined" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GoalElement" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="Importance_not_defined Confidence_not_defined"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="Importance_not_defined" value="importance &lt;> EImportance::Not_Defined"/>
+      <details key="Confidence_not_defined" value="confidence &lt;> EConfidence::Not_Defined"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="let imp : String = if self.importance = EImportance::Very_High then 'Very High' &#xA;&#x9;&#x9;&#x9;elseif self.importance = EImportance::High then 'High'&#xA;&#x9;&#x9;&#x9;elseif self.importance = EImportance::Medium then 'Medium'&#xA;&#x9;&#x9;&#x9;elseif self.importance = EImportance::Low then 'Low' &#xA;&#x9;&#x9;&#x9;elseif self.importance = EImportance::Very_Low then 'Very Low'&#xA;&#x9;&#x9;&#x9;else 'Not Defined' endif&#xA;&#x9;&#x9;&#x9;in let conf : String = if self.confidence = EConfidence::Possibly_More then 'Possibly More' &#xA;&#x9;&#x9;&#x9;elseif self.confidence = EConfidence::Confident then 'Confident' &#xA;&#x9;&#x9;&#x9;elseif self.confidence = EConfidence::Possibly_Less then 'Possibly Less' &#xA;&#x9;&#x9;&#x9;else 'Not Defined' endif&#xA;&#x9;&#x9;&#x9;in elementName + ' ' + imp + ' ' + conf"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importance" eType="#//EImportance"
+        defaultValueLiteral="Not_Defined"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="confidence" eType="#//EConfidence"
+        defaultValueLiteral="Not_Defined"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="localValue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iterations" upperBound="-1"
+        eType="#//Iteration" containment="true" eOpposite="#//Iteration/element"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="globalValue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evaluation" eType="#//EEvaluation"
+        defaultValueLiteral="Not_Defined"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contribution" eSuperTypes="#//Link">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="Only_one_target"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="Only_one_target" value="self.trgs->size() &lt;2"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="let impact : Integer = if self.contributionType = EContribution::p100 then 100 elseif self.contributionType = EContribution::p75 then 75 &#xA;&#x9;&#x9;&#x9;elseif self.contributionType = EContribution::p50 then 50 elseif self.contributionType = EContribution::p25 then 25&#xA;&#x9;&#x9;&#x9;elseif self.contributionType = EContribution::n25 then -25 elseif self.contributionType = EContribution::n50 then -50 &#xA;&#x9;&#x9;&#x9;elseif self.contributionType = EContribution::n75 then -75 elseif self.contributionType = EContribution::n100 then -100 else 0 endif&#xA;&#x9;&#x9;&#x9;in if trgs->size() &lt;> 0 then src.elementName + ' to ' + trgs->first().elementName + ' (' + impact.toString() + ')' else '' endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contributionType" eType="#//EContribution"
+        defaultValueLiteral="p0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="#//Link">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="Only_one_target"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="Only_one_target" value="self.trgs->size() &lt;2"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="if trgs->size() &lt;> 0 then src.elementName+' to '+trgs->first().elementName else '' endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EContribution">
+    <eLiterals name="p100"/>
+    <eLiterals name="p75" value="1"/>
+    <eLiterals name="p50" value="2"/>
+    <eLiterals name="p25" value="3"/>
+    <eLiterals name="p0" value="4"/>
+    <eLiterals name="n25" value="5"/>
+    <eLiterals name="n50" value="6"/>
+    <eLiterals name="n75" value="7"/>
+    <eLiterals name="n100" value="8"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Iteration">
+    <eAnnotations source="http://www.obeo.fr/dsl/dnc/archetype">
+      <details key="archetype" value="Thing"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="let reducedValue : String = if globalValue &lt; 0 then (if globalValue.toString().size() >5 then globalValue.toString().substring(1, 5) else globalValue.toString() endif) else (if globalValue.toString().size() > 4 then globalValue.toString().substring(1, 4) else globalValue.toString() endif) endif &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;in iteration.toString() + '- Value: ' + reducedValue"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importance" eType="#//EImportance"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="confidence" eType="#//EConfidence"
+        defaultValueLiteral="Confident"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//GoalElement"
+        eOpposite="#//GoalElement/iterations"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="globalValue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="localValue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valuefrom" upperBound="-1"
+        eType="#//ValueFrom" containment="true" eOpposite="#//ValueFrom/iteration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EConfidence">
+    <eLiterals name="Possibly_More"/>
+    <eLiterals name="Confident" value="1"/>
+    <eLiterals name="Possibly_Less" value="2"/>
+    <eLiterals name="Not_Defined" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//IntentionalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//IntentionalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SoftGoal" eSuperTypes="#//IntentionalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Decomposition" eSuperTypes="#//Link">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="All_the_intentional_elements_of_a_decomposition_must_belong_to_the_same_actor"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="All_the_intentional_elements_of_a_decomposition_must_belong_to_the_same_actor"
+          value="self.trgs->forAll(actor = self.src.actor)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="decompositionType" eType="#//EDecomposition"
+        defaultValueLiteral="AND"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EDecomposition">
+    <eLiterals name="AND"/>
+    <eLiterals name="IOR" value="1"/>
+    <eLiterals name="XOR" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueFrom">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="let reducedValue : String = if value &lt; 0 then (if value.toString().size() >5 then value.toString().substring(1, 5) else value.toString() endif) else (if value.toString().size() > 4 then value.toString().substring(1, 4) else value.toString() endif) endif &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;in reducedValue + ' - ' + intentionalelement.name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueFrom" eType="#//EValueFrom"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iteration" lowerBound="1"
+        eType="#//Iteration" eOpposite="#//Iteration/valuefrom"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intentionalelement" lowerBound="1"
+        eType="#//IntentionalElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EValueFrom">
+    <eLiterals name="local"/>
+    <eLiterals name="External" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEvaluation">
+    <eLiterals name="Strongly_Agree"/>
+    <eLiterals name="Agree" value="1"/>
+    <eLiterals name="Neutral" value="2"/>
+    <eLiterals name="Disagree" value="3"/>
+    <eLiterals name="Strongly_Disagree" value="4"/>
+    <eLiterals name="Not_Defined" value="5"/>
+  </eClassifiers>
+</ecore:EPackage>
