@@ -1,0 +1,5 @@
+The goal model of Meeting Scheduler shows an application with which to organize meetings among participants. There are two stakeholders (actors): the Organizer, who wishes to schedule the meeting, and the Participant, who wishes to join the meeting.
+
+The goal of the Organizer is to Organize meeting. She is interested in doing this in the following manner: Quick and with Low effort. The goal of the Participant is to Attend meeting, and she is interested in the application being Easy to use such that it requires Low effort, thus allowing her to be Satisfied with it. The Participant is additionally concerned about the Richer medium when organizing the meeting, since an application will not allow her to express herself as well as speaking in-person, signifying that the eventual Quality of the process of organizing the meeting could be affected.
+
+With regard to achieving the goals of the two stakeholders (Organize meeting and Attend meeting), the goal model shows two alternatives: the meeting could be organized by means of the Meeting Scheduler application (Let scheduler schedule meeting) or the Meeting could be organized manually (Schedule meeting manually).

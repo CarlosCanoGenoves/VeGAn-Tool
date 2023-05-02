@@ -1,0 +1,4 @@
+The goal model of the Amazon Kindle Unlimited shows an online subscription library. This model has two actors (i.e., Reader and Writer) interested in the service.
+
+The reader actor has the goal Read books. In order to read books, the reader can either Buy a paper book or Subscribe to Amazon Kindle Unlimited. The reader is interested in reading books at Low cost. The writer actor has the goal Publish book. To publish the book, the writer can Publish book on paper, for example in a bookstore, or Publish the book on Amazon. When publishing the book, the writer is interested in Benefits and increasing readers.
+

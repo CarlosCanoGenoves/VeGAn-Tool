@@ -1,0 +1,472 @@
+{
+  "actors": [
+    {
+      "id": "dc00b6c0-9c43-49fc-918f-393caad3c1bf",
+      "text": "Participant",
+      "type": "istar.Actor",
+      "x": 443,
+      "y": 25,
+      "customProperties": {
+        "Description": ""
+      },
+      "nodes": [
+        {
+          "id": "5f480ed1-2be2-4da0-a123-e7317f136392",
+          "text": "Attend meeting",
+          "type": "istar.Goal",
+          "x": 606,
+          "y": 98,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "31dcbd1c-430d-4823-a395-97e4f666f48a",
+          "text": "Find date using meeting scheduler",
+          "type": "istar.Task",
+          "x": 514,
+          "y": 187,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "a156b49c-3931-4d0d-93bc-ae77d69d9568",
+          "text": "Find date talking to organizer",
+          "type": "istar.Task",
+          "x": 642,
+          "y": 191,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "b8fdd495-dc69-433f-9d4e-bbb7d614a03e",
+          "text": "Richer medium",
+          "type": "istar.Quality",
+          "x": 443,
+          "y": 125,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "67d45e1a-1201-4d38-b6df-f0416c0ebdc6",
+          "text": "Quality",
+          "type": "istar.Quality",
+          "x": 505,
+          "y": 54,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "1bef6622-0b22-4d12-b1a7-ab4cf14ad15a",
+          "text": "Satisfaction",
+          "type": "istar.Quality",
+          "x": 617,
+          "y": 36,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "5ec9bfc6-5d00-4787-a780-3061959889a8",
+          "text": "Low effort",
+          "type": "istar.Quality",
+          "x": 736,
+          "y": 51,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "b10767b7-2211-40fd-b94c-02d53bf20df1",
+          "text": "Easy to use",
+          "type": "istar.Quality",
+          "x": 744,
+          "y": 123,
+          "customProperties": {
+            "Description": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "c90b6d45-23bd-4958-9c36-b9d0de349463",
+      "text": "Organizer",
+      "type": "istar.Actor",
+      "x": 31,
+      "y": 26,
+      "customProperties": {
+        "Description": ""
+      },
+      "nodes": [
+        {
+          "id": "c2a2734d-b900-44e1-b8de-4cf7fdabef40",
+          "text": "Organize meeting",
+          "type": "istar.Goal",
+          "x": 123,
+          "y": 38,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "2646af49-6603-4c69-b9b1-9b268d5b79e6",
+          "text": "Schedule meeting manually",
+          "type": "istar.Task",
+          "x": 82,
+          "y": 161,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "4820cb5a-bde0-4060-bdf2-10095ca52e7e",
+          "text": "Let scheduler schedule meeting",
+          "type": "istar.Task",
+          "x": 197,
+          "y": 151,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "b598ce66-ee10-4e98-b7d8-29cc588aa9f4",
+          "text": "Low effort",
+          "type": "istar.Quality",
+          "x": 223,
+          "y": 74,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "0d1b2cc5-54a1-497c-b26a-d5602ce65545",
+          "text": "Quick",
+          "type": "istar.Quality",
+          "x": 37,
+          "y": 93,
+          "customProperties": {
+            "Description": ""
+          }
+        }
+      ]
+    }
+  ],
+  "orphans": [],
+  "dependencies": [
+    {
+      "id": "46fe5f83-68cb-4c3e-bf2b-7556346f70e2",
+      "text": "Meeting date",
+      "type": "istar.Resource",
+      "x": 342,
+      "y": 170,
+      "customProperties": {
+        "Description": ""
+      },
+      "source": "31dcbd1c-430d-4823-a395-97e4f666f48a",
+      "target": "4820cb5a-bde0-4060-bdf2-10095ca52e7e"
+    },
+    {
+      "id": "389e074d-a6bd-443b-a7bb-8a49c40abfb3",
+      "text": "Meeting date",
+      "type": "istar.Resource",
+      "x": 344,
+      "y": 226,
+      "customProperties": {
+        "Description": ""
+      },
+      "source": "a156b49c-3931-4d0d-93bc-ae77d69d9568",
+      "target": "2646af49-6603-4c69-b9b1-9b268d5b79e6"
+    }
+  ],
+  "links": [
+    {
+      "id": "1360b44d-5c6d-4c06-bed8-9f6cf755f1cc",
+      "type": "istar.DependencyLink",
+      "source": "389e074d-a6bd-443b-a7bb-8a49c40abfb3",
+      "target": "2646af49-6603-4c69-b9b1-9b268d5b79e6"
+    },
+    {
+      "id": "0e545118-6b9a-41a9-9675-8e6cd5585c64",
+      "type": "istar.DependencyLink",
+      "source": "a156b49c-3931-4d0d-93bc-ae77d69d9568",
+      "target": "389e074d-a6bd-443b-a7bb-8a49c40abfb3"
+    },
+    {
+      "id": "af4810bc-09c2-4a9a-b4f2-c832700f5629",
+      "type": "istar.DependencyLink",
+      "source": "46fe5f83-68cb-4c3e-bf2b-7556346f70e2",
+      "target": "4820cb5a-bde0-4060-bdf2-10095ca52e7e"
+    },
+    {
+      "id": "b96fafe0-53ab-4f75-a1ba-15f775f5489f",
+      "type": "istar.DependencyLink",
+      "source": "31dcbd1c-430d-4823-a395-97e4f666f48a",
+      "target": "46fe5f83-68cb-4c3e-bf2b-7556346f70e2"
+    },
+    {
+      "id": "a6c75db0-0229-440f-8875-375a7f02d94e",
+      "type": "istar.OrRefinementLink",
+      "source": "2646af49-6603-4c69-b9b1-9b268d5b79e6",
+      "target": "c2a2734d-b900-44e1-b8de-4cf7fdabef40"
+    },
+    {
+      "id": "9a814eac-ae57-452c-a10c-ad30b2c626d1",
+      "type": "istar.OrRefinementLink",
+      "source": "4820cb5a-bde0-4060-bdf2-10095ca52e7e",
+      "target": "c2a2734d-b900-44e1-b8de-4cf7fdabef40"
+    },
+    {
+      "id": "2312f673-a4e9-4f81-bcfc-fecdb9be6ba9",
+      "type": "istar.ContributionLink",
+      "source": "2646af49-6603-4c69-b9b1-9b268d5b79e6",
+      "target": "0d1b2cc5-54a1-497c-b26a-d5602ce65545",
+      "label": "hurt"
+    },
+    {
+      "id": "48a33b02-e197-4258-96c5-1ceb95e71dc8",
+      "type": "istar.ContributionLink",
+      "source": "2646af49-6603-4c69-b9b1-9b268d5b79e6",
+      "target": "b598ce66-ee10-4e98-b7d8-29cc588aa9f4",
+      "label": "hurt"
+    },
+    {
+      "id": "0b3e7f68-a978-450d-9eee-b6b17935a22e",
+      "type": "istar.ContributionLink",
+      "source": "4820cb5a-bde0-4060-bdf2-10095ca52e7e",
+      "target": "0d1b2cc5-54a1-497c-b26a-d5602ce65545",
+      "label": "make"
+    },
+    {
+      "id": "7d5f86e9-e06c-4835-bfb2-9809f6988739",
+      "type": "istar.ContributionLink",
+      "source": "4820cb5a-bde0-4060-bdf2-10095ca52e7e",
+      "target": "b598ce66-ee10-4e98-b7d8-29cc588aa9f4",
+      "label": "make"
+    },
+    {
+      "id": "09ebaacc-560f-4077-9539-80d98ccafdff",
+      "type": "istar.OrRefinementLink",
+      "source": "31dcbd1c-430d-4823-a395-97e4f666f48a",
+      "target": "5f480ed1-2be2-4da0-a123-e7317f136392"
+    },
+    {
+      "id": "24d7e58d-0b6e-4fcb-a9f8-2c0dc3b24ea5",
+      "type": "istar.OrRefinementLink",
+      "source": "a156b49c-3931-4d0d-93bc-ae77d69d9568",
+      "target": "5f480ed1-2be2-4da0-a123-e7317f136392"
+    },
+    {
+      "id": "705ad762-daa8-4ca3-9af6-4496d933d573",
+      "type": "istar.ContributionLink",
+      "source": "a156b49c-3931-4d0d-93bc-ae77d69d9568",
+      "target": "b10767b7-2211-40fd-b94c-02d53bf20df1",
+      "label": "make"
+    },
+    {
+      "id": "105f0b4a-b210-4c8f-bbc3-5b5e0f3c8f5f",
+      "type": "istar.ContributionLink",
+      "source": "b10767b7-2211-40fd-b94c-02d53bf20df1",
+      "target": "5ec9bfc6-5d00-4787-a780-3061959889a8",
+      "label": "help"
+    },
+    {
+      "id": "3a147fa0-975c-4507-997e-a3a4ab4cc09e",
+      "type": "istar.ContributionLink",
+      "source": "5ec9bfc6-5d00-4787-a780-3061959889a8",
+      "target": "1bef6622-0b22-4d12-b1a7-ab4cf14ad15a",
+      "label": "help"
+    },
+    {
+      "id": "cd788175-28b1-4cd5-80ef-d576bd1017d3",
+      "type": "istar.ContributionLink",
+      "source": "67d45e1a-1201-4d38-b6df-f0416c0ebdc6",
+      "target": "1bef6622-0b22-4d12-b1a7-ab4cf14ad15a",
+      "label": "help"
+    },
+    {
+      "id": "1f6a63cb-794d-4d89-ab28-82c54e7be02d",
+      "type": "istar.ContributionLink",
+      "source": "b8fdd495-dc69-433f-9d4e-bbb7d614a03e",
+      "target": "67d45e1a-1201-4d38-b6df-f0416c0ebdc6",
+      "label": "help"
+    },
+    {
+      "id": "f5ee74b1-54f1-4e51-a8fe-30a3befd4669",
+      "type": "istar.ContributionLink",
+      "source": "a156b49c-3931-4d0d-93bc-ae77d69d9568",
+      "target": "b8fdd495-dc69-433f-9d4e-bbb7d614a03e",
+      "label": "make"
+    },
+    {
+      "id": "329b3081-dda6-4e23-8924-82c26d27315e",
+      "type": "istar.ContributionLink",
+      "source": "31dcbd1c-430d-4823-a395-97e4f666f48a",
+      "target": "b8fdd495-dc69-433f-9d4e-bbb7d614a03e",
+      "label": "help"
+    },
+    {
+      "id": "6bf59159-0e52-48fb-970b-b06acf0ad8e5",
+      "type": "istar.ContributionLink",
+      "source": "31dcbd1c-430d-4823-a395-97e4f666f48a",
+      "target": "b10767b7-2211-40fd-b94c-02d53bf20df1",
+      "label": "help"
+    }
+  ],
+  "display": {
+    "31dcbd1c-430d-4823-a395-97e4f666f48a": {
+      "width": 116.609375,
+      "height": 46.34375
+    },
+    "a156b49c-3931-4d0d-93bc-ae77d69d9568": {
+      "width": 111.609375,
+      "height": 41.34375
+    },
+    "b8fdd495-dc69-433f-9d4e-bbb7d614a03e": {
+      "width": 85.6348876953125,
+      "height": 41.34803771972656
+    },
+    "67d45e1a-1201-4d38-b6df-f0416c0ebdc6": {
+      "width": 68.63006591796875,
+      "height": 39.347930908203125
+    },
+    "1bef6622-0b22-4d12-b1a7-ab4cf14ad15a": {
+      "width": 78.63275146484375,
+      "height": 39.34782409667969
+    },
+    "5ec9bfc6-5d00-4787-a780-3061959889a8": {
+      "width": 77.63275146484375,
+      "height": 40.34782409667969
+    },
+    "b10767b7-2211-40fd-b94c-02d53bf20df1": {
+      "width": 81.6336669921875,
+      "height": 39.95726013183594
+    },
+    "b598ce66-ee10-4e98-b7d8-29cc588aa9f4": {
+      "width": 80.6336669921875,
+      "height": 44.348236083984375
+    },
+    "0d1b2cc5-54a1-497c-b26a-d5602ce65545": {
+      "width": 74.63216781616211,
+      "height": 34.34730529785156
+    },
+    "0e545118-6b9a-41a9-9675-8e6cd5585c64": {
+      "vertices": [
+        {
+          "x": 552,
+          "y": 254
+        }
+      ]
+    },
+    "af4810bc-09c2-4a9a-b4f2-c832700f5629": {
+      "vertices": [
+        {
+          "x": 342,
+          "y": 186
+        }
+      ]
+    },
+    "2312f673-a4e9-4f81-bcfc-fecdb9be6ba9": {
+      "vertices": [
+        {
+          "x": 108,
+          "y": 150
+        }
+      ]
+    },
+    "48a33b02-e197-4258-96c5-1ceb95e71dc8": {
+      "vertices": [
+        {
+          "x": 184,
+          "y": 150
+        },
+        {
+          "x": 189,
+          "y": 146
+        }
+      ]
+    },
+    "0b3e7f68-a978-450d-9eee-b6b17935a22e": {
+      "vertices": [
+        {
+          "x": 169,
+          "y": 112
+        },
+        {
+          "x": 124,
+          "y": 106
+        }
+      ]
+    },
+    "7d5f86e9-e06c-4835-bfb2-9809f6988739": {
+      "vertices": [
+        {
+          "x": 256,
+          "y": 126
+        }
+      ]
+    },
+    "705ad762-daa8-4ca3-9af6-4496d933d573": {
+      "vertices": [
+        {
+          "x": 744,
+          "y": 185
+        },
+        {
+          "x": 750,
+          "y": 182
+        }
+      ]
+    },
+    "1f6a63cb-794d-4d89-ab28-82c54e7be02d": {
+      "vertices": [
+        {
+          "x": 512,
+          "y": 112
+        }
+      ]
+    },
+    "f5ee74b1-54f1-4e51-a8fe-30a3befd4669": {
+      "vertices": [
+        {
+          "x": 608,
+          "y": 170
+        }
+      ]
+    },
+    "329b3081-dda6-4e23-8924-82c26d27315e": {
+      "vertices": [
+        {
+          "x": 527,
+          "y": 180
+        }
+      ]
+    },
+    "6bf59159-0e52-48fb-970b-b06acf0ad8e5": {
+      "vertices": [
+        {
+          "x": 708,
+          "y": 162
+        },
+        {
+          "x": 724,
+          "y": 159
+        }
+      ]
+    }
+  },
+  "tool": "pistar.2.1.0",
+  "istar": "2.0",
+  "saveDate": "Tue, 02 May 2023 09:46:34 GMT",
+  "diagram": {
+    "width": 1000,
+    "height": 700,
+    "name": "Welcome Model",
+    "customProperties": {
+      "Description": "Welcome to the piStar tool version 2.1.0, released on November, 2021! This model describes some of the recent improvements in the tool. Click on the purple elements for further info.\n\nFor help using this tool, please check the Help menu above"
+    }
+  }
+}
