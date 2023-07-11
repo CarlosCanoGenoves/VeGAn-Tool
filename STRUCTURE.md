@@ -25,3 +25,24 @@ The eclipse project is structured in three sections:
 * [testModels](https://github.com/CarlosCanoGenoves/VeGAn-Tool/tree/main/GoalModel/testModels): Contains models used for unit test.
 * [piStar](https://github.com/CarlosCanoGenoves/VeGAn-Tool/tree/main/GoalModel/piStar): Contains models from the piStar application for testing.
 * [Examples of Goal Models](https://github.com/CarlosCanoGenoves/VeGAn-Tool/tree/main/GoalModel/Examples%20of%20Goal%20Models): Contains examples of goal models to analyze.
+
+# Architecture
+
+![Component drawio](https://github.com/CarlosCanoGenoves/VeGAn-Tool/assets/42547476/3460867e-283c-4bb5-8794-4851e3e3352f)
+
+
+The architecture of the VeGAn-Tool is organized in four packages:
+
+* [VEGAN](https://github.com/CarlosCanoGenoves/VeGAn-Tool/tree/main/GoalModel/src/VEGAN): Contains the implementation of the VeGAn technique.
+  * [Tuple](https://github.com/CarlosCanoGenoves/VeGAn-Tool/blob/main/GoalModel/src/VEGAN/Tuple.java): It allows to generate tuples of variables, it is used by multiple methods to return multiple variables as a result of the execution of the method.
+  * [UsingEMFModel](https://github.com/CarlosCanoGenoves/VeGAn-Tool/blob/main/GoalModel/src/VEGAN/UsingEMFModel.java): It allows the reading of files that follow the XMI format, which is used by EMF to instantiate models.
+  * [FuzzyNumber](https://github.com/CarlosCanoGenoves/VeGAn-Tool/blob/main/GoalModel/src/VEGAN/FuzzyNumber.java): Structures and takes care of fuzzy numbers (fuzzification, comparison of fuzzy numbers, and Euclidean distance between fuzzy numbers)
+  * [Propagation](https://github.com/CarlosCanoGenoves/VeGAn-Tool/blob/main/GoalModel/src/VEGAN/Propagation.java): Implements the systematic propagation used by the tool.
+  * [FTOPSIS](https://github.com/CarlosCanoGenoves/VeGAn-Tool/blob/main/GoalModel/src/VEGAN/FTOPSIS.java): It implements the FTOPSIS technique used to calculate the value taking as input the output of the propagation.
+* [VISUAL](https://github.com/CarlosCanoGenoves/VeGAn-Tool/tree/main/GoalModel/src/VISUAL): Contains the interface part of the application.
+  * [JHyperlink](https://github.com/CarlosCanoGenoves/VeGAn-Tool/blob/main/GoalModel/src/VISUAL/JHyperlink.java): It allows to create labels with hyperlinks to web pages.
+  * [MultilineTableCellRenderer](https://github.com/CarlosCanoGenoves/VeGAn-Tool/blob/main/GoalModel/src/VISUAL/MultilineTableCellRenderer.java): It allows you to create cells in a table that occupy multiple lines (multiline).
+  * [Visual](https://github.com/CarlosCanoGenoves/VeGAn-Tool/blob/main/GoalModel/src/VISUAL/Visual.java): Implements the graphical interface of the tool.
+* [piStar](https://github.com/CarlosCanoGenoves/VeGAn-Tool/tree/main/GoalModel/src/piStar): Contains the implementation of the model import of the piStar tool.
+
+In addition, the [test](https://github.com/CarlosCanoGenoves/VeGAn-Tool/tree/main/GoalModel/src) contains jUnit Test of the application.
